@@ -9,6 +9,35 @@ let menuItems = [
   'Log Out'
 ];
 
+function menuMaker() {
+  let component = "";
+
+  for (let i = 0; i < menuItems.length; i++) {
+    component += `
+      <div class="menu">
+        <ul>
+          <li>${menuItems[i]}</li>
+        </ul>
+      </div>
+    `;
+  }
+
+  // += because you wanna keep the image and header in the "header" menu
+  let header = document.querySelector(".header");
+  header.innerHTML += component;
+
+  let menu_button = document.querySelector(".menu-button");
+  let menus = document.querySelectorAll(".menu");
+
+  menu_button.addEventListener("click", () => {
+    menus.forEach(menu => {
+      menu.classList.toggle("menu--open");
+    });
+  });
+}
+
+menuMaker();
+
 /* 
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
 
