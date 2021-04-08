@@ -3,6 +3,7 @@
 // You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
 const data = [
   {
+    id:1,
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -24,6 +25,7 @@ const data = [
         moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
   },
   {
+    id:2,
     title: 'Javascript and You, ES6',
     date: 'May 7th, 2019',
     firstParagraph: `Alohamora wand elf parchment, Wingardium Leviosa hippogriff, house dementors betrayal. Holly, Snape centaur portkey ghost
@@ -44,6 +46,7 @@ const data = [
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
+    id:3,
     title: 'React vs Angular vs Vue',
     date: 'June 7th, 2019',
     firstParagraph: `Bulbasaur Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ivysaur Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -72,6 +75,7 @@ const data = [
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
+    id:4,
     title: 'Professional Software Development in 2019',
     date: 'Jan 1st, 2019',
     firstParagraph: `Hodor hodor HODOR! Hodor hodor - hodor, hodor. Hodor hodor... Hodor hodor hodor; hodor hodor. Hodor hodor hodor, hodor, hodor
@@ -88,6 +92,47 @@ const data = [
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+
+function articleMaker() {
+  let component = "";
+
+  data.forEach(article => {
+    component += 
+    `
+      <div class="article" id="article_${article.id}">
+        <h2>${article.title}</h2>
+        <p class="date">${article.date}</p>
+        ${article.firstParagraph}
+        <br>
+        ${article.secondParagraph}
+        <br>
+        ${article.thirdParagraph}
+        <br>
+        <span class="expandButton" id="${article.id}">+</span>
+      </div>
+    `;
+  });
+
+  let articles = document.querySelector(".articles");
+  articles.innerHTML = component;
+
+  let expandButtons = document.querySelectorAll(".expandButton");
+
+  expandButtons.forEach(button => {
+    button.addEventListener("click", event => {
+      let id = event.target.id;
+      let article = document.querySelector(`#article_${id}`);
+
+      article.classList.toggle("article-open");
+    });
+  });
+}
+
+articleMaker();
+
+
+
+
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
